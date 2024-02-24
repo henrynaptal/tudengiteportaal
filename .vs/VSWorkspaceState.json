@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\DB"
   ],
-  "SelectedNode": "\\home.php",
+  "SelectedNode": "\\DB\\config.php",
   "PreviewInSolutionExplorer": false
 }

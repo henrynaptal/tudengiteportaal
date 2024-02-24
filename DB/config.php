@@ -1,0 +1,1 @@
+andmebaasi ühendus luuakse siit
