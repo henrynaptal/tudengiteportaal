@@ -1,1 +1,3 @@
-andmebaasi ühendus luuakse siit
+<?php
+    
+   //paluks Ã¼hendust andmebaasiga
