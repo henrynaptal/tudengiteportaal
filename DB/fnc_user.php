@@ -3,8 +3,8 @@
     function sign_up(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mongoDB = "";
-            $database = $mongoDB->selectDatabase('nimi');
-            $collection = $database->selectCollection('collection nimi');
+            $database = $mongoDB->selectDatabase('Cluseter0');
+            $collection = $database->selectCollection('User');
 
             $fullName = filter_input(INPUT_POST, 'full_name', FILTER_SANITIZE_STRING);
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
