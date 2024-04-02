@@ -28,7 +28,6 @@ if (isset($_POST['signup'])) {
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $email = $_POST['email'];
-    $phoneNo = $_POST['phoneNo'];
     $password = sha1($_POST['password']);
 }
 
@@ -36,7 +35,6 @@ $data = array(
     "Firstname" => $fname,
     "Lastname" => $lname,
     "Email" => $email,
-    "Phone Number" => $phoneNo,
     "Password" => $password
 );
 

@@ -7,13 +7,17 @@
 </head>
 <body>
     <form action="" method="POST">
+        <input type="text" placeholder="Eesnimi" name="fname" id="fname" required=""/>
+        <br>
+        <input type="text" placeholder="Perekonnanimi" name="lname" id="lname" required=""/>
+        <br>
         <input type="text" placeholder="Email" name="email" id="email" required=""/>
         <br>
         <input type="text" placeholder="Parool" name="password" id="password" required=""/>
         <br>
-        <input type="submit" name="login" id="login" value="Logi sisse"/>
+        <input type="submit" name="signup" id="signup" value="Registreeru"/>
     </form>
 
-    <a href="signup.php">Kas sul pole kontot? Registreeru</a>
+    <a href="login.php">Kas sul on konto juba olemas? Logi sisse</a>
 </body>
 </html>
