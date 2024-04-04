@@ -1,6 +1,6 @@
 <?php
 
-require 'vendor/autoload.php'; // Laadige Composeri loodud autoload fail
+require 'vendor/autoload.php';
 
 use MongoDB\Client as MongoClient;
 
