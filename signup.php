@@ -1,20 +1,16 @@
 <?php
 
-require 'vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
-use MongoDB\Client as MongoClient;
+$databaseConnection = new MongoDB\Client(
+    'mongodb+srv://Tenso:Dti2023@cluster0.v10lvza.mongodb.net/?tls=true&tlsCAFile=C%3A%5Cxampp%5Capache%5Cbin%5Ccurl-ca-bundle.crt'
+);
 
-// ühendusstring
-$connectionString = "mongodb://<kasutajanimi>:<parool>@<andmebaasi_host>:<port>/<andmebaasi_nimi>";
+//connecting to specific database in mongoDB
+$myDatabase = $databaseConnection->DTI_Database;
 
-// loon MongoDB kliendi
-$client = new MongoClient($connectionString);
-
-// valin andmebaasi
-$database = $client->selectDatabase('<andmebaasi_nimi>');
-
-// valin kollektsiooni (tabel), kus kasutajate andmed on salvestatud
-$collection = $database->selectCollection('<kasutajate_kollektsiooni_nimi>');
+//connecting to our mongoDB Collections
+$userCollection = $myDatabase->users;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $eesnimi = $_POST['fname'];
@@ -22,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $parool = $_POST['password'];
 
-    $collection->insertOne([
+    $userCollection->insertOne([
         'eesnimi' => $eesnimi,
         'perekonnanimi' => $perekonnanimi,
         'email' => $email,
@@ -36,24 +32,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DTI tudengite portaal</title>
 </head>
+
 <body>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-        <input type="text" placeholder="Eesnimi" name="fname" id="fname" required=""/>
+        <input type="text" placeholder="Eesnimi" name="fname" id="fname" required="" />
         <br>
-        <input type="text" placeholder="Perekonnanimi" name="lname" id="lname" required=""/>
+        <input type="text" placeholder="Perekonnanimi" name="lname" id="lname" required="" />
         <br>
-        <input type="text" placeholder="Email" name="email" id="email" required=""/>
+        <input type="text" placeholder="Email" name="email" id="email" required="" />
         <br>
-        <input type="text" placeholder="Parool" name="password" id="password" required=""/>
+        <input type="text" placeholder="Parool" name="password" id="password" required="" />
         <br>
-        <input type="submit" name="signup" id="signup" value="Registreeru"/>
+        <input type="submit" name="signup" id="signup" value="Registreeru" />
     </form>
 
     <a href="login.php">Kas sul on konto juba olemas? Logi sisse</a>
 </body>
+
 </html>
