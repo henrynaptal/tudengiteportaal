@@ -3,7 +3,7 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 $databaseConnection = new MongoDB\Client(
-    'mongodb+srv://Tenso:Dti2023@cluster0.v10lvza.mongodb.net/?tls=true&tlsCAFile=C%3A%5Cxampp%5Capache%5Cbin%5Ccurl-ca-bundle.crt'
+    'mongodb+srv://SIIAuser:siiap@cluster0.v10lvza.mongodb.net/?tls=true&tlsCAFile=C%3A%5Cxampp%5Capache%5Cbin%5Ccurl-ca-bundle.crt'
 );
 
 //connecting to specific database in mongoDB
