@@ -1,13 +1,13 @@
 <?php
 
 //this pulls the MongoDB driver from vendor folder
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '../vendor/autoload.php';
 
 //connect to MongoDB Database
 
 // muuda strinigs pw ja user ära
 $databaseConnection = new MongoDB\Client(
-    'mongodb+srv://SIIAUSER:SIIAPW@cluster0.v10lvza.mongodb.net/?tls=true&tlsCAFile=C%3A%5Cxampp%5Capache%5Cbin%5Ccurl-ca-bundle.crt'
+    'mongodb+srv://Tenso:Dti2023@cluster0.v10lvza.mongodb.net/?tls=true&tlsCAFile=C%3A%5Cxampp%5Capache%5Cbin%5Ccurl-ca-bundle.crt'
 );
 
 //connecting to specific database in mongoDB
@@ -44,15 +44,15 @@ $insert = $userCollection->insertOne($data);
 if ($insert) {
     ?>
     <center>
-        <h4 style="color: green;">Successfully Registered</h4>
+        <h4 style="color: green;">Olete edukalt registreerunud!</h4>
     </center>
-    <center><a href="../index.php">Login</a></center>
+    <center><a href="../index.php">Logi sisse</a></center>
     <?php
 } else {
     ?>
     <center>
-        <h4 style="color: red;">Registration Failed</h4>
+        <h4 style="color: red;">Tekkis viga registreerimisel</h4>
     </center>
-    <center><a href="inseert.php">Try Again</a></center>
+    <center><a href="inseert.php">Proovi uuesti</a></center>
     <?php
 }
