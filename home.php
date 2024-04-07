@@ -36,7 +36,6 @@
     </div>
 
 
-
     <div class="sidebar"></div> 
 
 </body>
