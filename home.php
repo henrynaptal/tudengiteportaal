@@ -84,12 +84,11 @@
 
     </div>
 
-    <!--
     <div class="dp">
         <img src="pics/dp2.jpg" alt="students">
-        <a href="#" class="dp"><img src="tudengiteportaal-main\pics\dp2.jpg" alt="students"></a>
+        <a href="#" class="dp"><img src="tudengiteportaal\pics\dp2.jpg" alt="students"></a>
 
-    </div> -->
+    </div>
 
     <div class="sidebar"></div> 
 
