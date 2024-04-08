@@ -1,9 +1,17 @@
 <?php
 
-    session_start();
+session_start();
+require_once __DIR__ . '/../vendor/autoload.php';
 
+// Kontrollitakse, kas kasutaja on sisse logitud
+if (!isset($_SESSION['kasutaja'])) {
+    // Kui kasutaja pole sisse logitud, suunatakse ta tagasi login lehele
+    header('Location: login.php');
+    exit;
+}
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,24 +20,6 @@
     <title>DTI tudengite portaal</title>
 </head>
 <body>
-    <table>
-        <tr>
-            <td>Eesnimi:</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Perekonnanimi:</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td><a href="edit-profile.php">Muuda andmeid</a></td>
-            <td><a href="logout.php">Logi välja</a></td>
-        </tr>
-    </table>
-    
+    <a href="logout.php">Logi välja</a>
 </body>
 </html>
