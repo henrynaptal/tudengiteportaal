@@ -6,7 +6,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 // Kontrollitakse, kas kasutaja on sisse logitud
 if (!isset($_SESSION['kasutaja'])) {
     // Kui kasutaja pole sisse logitud, suunatakse ta tagasi login lehele
-    header('Location: login.php');
+    header('Location: ../login.php');
     exit;
 }
 
