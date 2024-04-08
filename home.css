@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+}
+
+.header {
+    margin-top: 2rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    align-items: flex-end; /*et nav osa oleks divi all osas, mitte yleval*/
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white; 
+}
+
+li {
+    float: right;
+}
+
+li a {
+    display: block;
+    color: #3c4445;
+    font-style: italic;
+    font-family: "Times New Roman", serif;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 2rem 2rem;
+    text-decoration: none;
+    z-index: 2;
+}
+
+li a:hover {
+    color: #6bcaba;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: #6bcaba;
+    display: flex;
+    z-index: 0;
+    width: 13%;
+    height: 100%;
+    margin-top: 10%;
+}
+
+img {
+    width:100%;
+    height:auto;
+}
+
+.logo {
+    width:8%
+}
+
+.welcome {
+    font-size: 100%;
+    color: #3c4445;
+    margin-left: 15%;
+    margin-top: 5%
+}
