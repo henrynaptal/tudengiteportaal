@@ -1,48 +1,45 @@
 <?php
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$databaseConnection = new MongoDB\Client(
+    'mongodb+srv://Tenso:Dti2023@cluster0.v10lvza.mongodb.net/?tls=true&tlsCAFile=C%3A%5Cxampp%5Capache%5Cbin%5Ccurl-ca-bundle.crt'
+);
+
+$myDatabase = $databaseConnection->DTI_Database;
+$postCollection = $myDatabase->posts;
+
 session_start();
-require_once '../DB/config.php'; // Muuda vastavalt oma MongoDB ühendusele
 
-// Kontrollitakse, kas kasutaja on sisse logitud
-if (!isset($_SESSION['kasutaja'])) {
-    // Kui kasutaja pole sisse logitud, suunatakse ta tagasi sisselogimise lehele
-    header('Location: /../login.php');
-    exit;
-}
-
-// Kui kasutaja on sisse logitud, võtame tema nime ja ID sessioonimuutujast
-$kasutaja_nimi = $_SESSION['kasutaja']['nimi'];
-$kasutaja_id = $_SESSION['kasutaja']['id'];
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['kasutaja'])) {
+    $kasutaja_id = $_SESSION['kasutaja']['_id'];
     $sisu = $_POST['sisu'];
 
-    // Salvestame postituse andmebaasi koos kasutaja ID-ga
-    $postitus = [
+    $postCollection->insertOne([
+        'kasutaja' => $kasutaja,
         'kasutaja_id' => $kasutaja_id,
-        'kasutaja_nimi' => $kasutaja_nimi,
         'sisu' => $sisu,
-        'pildid' => []
-    ];
+        'likes' => 0, 
+        'timestamp' => new MongoDB\BSON\UTCDateTime()
+    ]);
 
-    // Käsitleme üleslaetud pilte
-    if (!empty($_FILES['pildid']['name'][0])) {
-        $uploadDir = 'uploads/';
-        $uploadedFiles = [];
-        foreach ($_FILES['pildid']['name'] as $key => $fileName) {
-            $tmpName = $_FILES['pildid']['tmp_name'][$key];
-            $targetFilePath = $uploadDir . basename($fileName);
-            if (move_uploaded_file($tmpName, $targetFilePath)) {
-                $uploadedFiles[] = $targetFilePath;
-            }
-        }
-        $postitus['pildid'] = $uploadedFiles;
-    }
-
-    // Salvestame postituse andmebaasi
-    $postitusteKollektsioon->insertOne($postitus);
-
-    // Suuname kasutaja tagasi avalehele
-    header('Location: index.php');
+    header('Location: home.php');
     exit;
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postituse loomine</title>
+</head>
+<body>
+    <h2>Postituse loomine</h2>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+        <textarea name="sisu" id="sisu" cols="30" rows="10" placeholder="Sisesta siia oma postituse sisu"></textarea>
+        <br>
+        <input type="submit" name="submit" value="Postita">
+    </form>
+</body>
+</html>

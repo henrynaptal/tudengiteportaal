@@ -6,10 +6,8 @@ $databaseConnection = new MongoDB\Client(
     'mongodb+srv://Tenso:Dti2023@cluster0.v10lvza.mongodb.net/?tls=true&tlsCAFile=C%3A%5Cxampp%5Capache%5Cbin%5Ccurl-ca-bundle.crt'
 );
 
-//connecting to specific database in mongoDB
 $myDatabase = $databaseConnection->DTI_Database;
 
-//connecting to our mongoDB Collections
 $userCollection = $myDatabase->users;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -18,7 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $parool = sha1($_POST['password']);
 
+    $kasutaja_id = uniqid();
+
     $userCollection->insertOne([
+        '_id' => $kasutaja_id,
         'eesnimi' => $eesnimi,
         'perekonnanimi' => $perekonnanimi,
         'email' => $email,

@@ -1,80 +1,54 @@
 <?php
+
 session_start();
-require_once '../DB/config.php'; // Muuda vastavalt oma MongoDB ühendusele
+require_once __DIR__ . '/../vendor/autoload.php';
 
 // Kontrollitakse, kas kasutaja on sisse logitud
 if (!isset($_SESSION['kasutaja'])) {
-    // Kui kasutaja pole sisse logitud, suunatakse ta tagasi sisselogimise lehele
+    // Kui kasutaja pole sisse logitud, suunatakse ta tagasi login lehele
     header('Location: ../login.php');
     exit;
 }
 
-// Kui kasutaja on sisse logitud, võetakse tema nimi sessioonimuutujast
-$kasutaja = $_SESSION['kasutaja'];
+$databaseConnection = new MongoDB\Client(
+    'mongodb+srv://Tenso:Dti2023@cluster0.v10lvza.mongodb.net/?tls=true&tlsCAFile=C%3A%5Cxampp%5Capache%5Cbin%5Ccurl-ca-bundle.crt'
+);
 
-// Näitame postitusi andmebaasist
-$postitused = $postitusteKollektsioon->find();
+$myDatabase = $databaseConnection->DTI_Database;
+$postCollection = $myDatabase->posts;
+
+$posts = $postCollection->find([], ['sort' => ['timestamp' => -1]]); // Sorteerime postitused ajatempli järgi vastupidises järjekorras
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['like'])) {
+        $post_id = $_POST['post_id'];
+        $postCollection->updateOne(
+            ['_id' => new MongoDB\BSON\ObjectID($post_id)],
+            ['$inc' => ['likes' => 1]] // Suurendame "likes" väärtust 1 võrra
+        );
+    }
+}
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinkedIn Style Feed</title>
-    <style>
-        .post-container {
-            border: 1px solid #ccc;
-            margin-bottom: 20px;
-            padding: 10px;
-        }
-        .post-container img {
-            max-width: 100%;
-            height: auto;
-            margin-top: 10px;
-        }
-    </style>
+    <title>Postituste leht</title>
 </head>
 <body>
-    <h1>Postitused</h1>
-    
-    <?php
-    foreach ($postitused as $postitus) {
-        echo '<div class="post-container">';
-        echo '<p>' . $postitus['sisu'] . '</p>';
-        if (isset($postitus['pildid']) && is_array($postitus['pildid'])) {
-            foreach ($postitus['pildid'] as $pilt) {
-                echo '<img src="' . $pilt . '" alt="Postituse pilt">';
-            }
-        }
-        echo '</div>';
-    }
-    ?>
-
-    <h2>Postituse lisamine</h2>
-    <form action="add_post.php" method="POST" enctype="multipart/form-data">
-        <textarea name="sisu" placeholder="Sisu..." required></textarea>
-        <br>
-        <input type="file" name="pildid[]" multiple accept="image/*">
-        <br>
-        <input type="submit" value="Postita">
-    </form>
-    <br>
-    <?php
-        $viimasedPostitused = $postitusteKollektsioon->find([], ['limit' => 5, 'sort' => ['_id' => -1]]);
-
-        echo '<h2>Viimased 5 postitust:</h2>';
-        foreach ($viimasedPostitused as $postitus) {
-            echo '<div class="post-container">';
-            echo '<p>' . $postitus['sisu'] . '</p>';
-            if (isset($postitus['pildid']) && is_array($postitus['pildid'])) {
-                foreach ($postitus['pildid'] as $pilt) {
-                    echo '<img src="' . $pilt . '" alt="Postituse pilt">';
-                }    
-            }
-            echo '</div>';
-        }
-    ?>
-    <a href="profile.php">Profiil</a>
+    <?php foreach ($posts as $post): ?>
+        <div class="post">
+            <p><?php echo $post['sisu']; ?></p>
+            <p>Autor: <?php echo $post['kasutaja']['eesnimi'] . ' ' . $post['kasutaja']['perekonnanimi']; ?></p>
+            <form action="like.php" method="POST">
+                <input type="hidden" name="post_id" value="<?php echo $post['_id']; ?>">
+                <button type="submit" name="like">Like</button>
+            </form>
+            <p><?php echo $post['likes']; ?> Likes</p>
+        </div>
+    <?php endforeach; ?>
 </body>
 </html>
