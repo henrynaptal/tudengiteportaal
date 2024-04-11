@@ -31,25 +31,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DTI tudengite portaal</title>
-</head>
 
-<body>
-    <h2>Logi sisse</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-        <input type="text" placeholder="Email" name="email" id="email" required="" />
-        <br>
-        <input type="password" placeholder="Parool" name="password" id="password" required="" />
-        <br>
-        <input type="submit" name="login" id="login" value="Logi sisse" />
-    </form>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="login.css">
+        <title>DTI tudengite portaal - logi sisse</title>
+    </head>
 
-    <p><?php if(isset($error_message)) echo $error_message; ?></p>
+    <body>
 
-    <a href="signup.php">Kas sul pole kontot? Registreeru</a>
-</body>
+        <div class="wrapper">
+            <div class="login_container">
+                <div class="login-header">
+                    <span>Tallinna Ülikooli Digitehnoloogiate Instituudi tudengiportaal<span>
+                </div>
 
+                <p>Logi sisse<p>
+                <br>
+
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+
+                    <div class="input_box">
+                        <input type="text" placeholder="E-post" name="email" id="email" class="input-field" required="" />
+                    </div>
+
+                    <br>
+
+                    <div class="input_box">
+                        <input type="password" placeholder="Parool" name="password" id="password" class="input-field" required="" />
+                    </div>
+
+                    <br>
+
+                    <div class="login_box">
+                        <input type="submit" name="login" id="login" class="input-submit" value="Logi sisse" />
+                    </div>
+
+                </form>
+
+                <p><?php if(isset($error_message)) echo $error_message; ?></p>
+
+                <a href="signup.php">Ei ole kontot? Vajuta siia!</a>
+            </div>
+        </div>
+    </body>
 </html>

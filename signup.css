@@ -18,7 +18,7 @@ body {
     min-height: 100vh;
 }
 
-.login_container {
+.signup_container {
     position: relative;
     border-top-right-radius: 3%;
     border-top-left-radius: 3%;
@@ -29,7 +29,7 @@ body {
     margin-top: 10%;
 }
 
-.login-header{
+.signup-header{
     font-size: 20px;
     color: #1e2020;
     margin-top: 10px;
@@ -42,7 +42,7 @@ body {
     flex-direction: column;
 }
 
-.login_box{
+.signup_box{
     text-align: center
 }
 
@@ -66,6 +66,8 @@ body {
     margin: 7px;
     cursor: pointer;
     transition: .3s;
+
+
 }
 
 .input-submit:hover{

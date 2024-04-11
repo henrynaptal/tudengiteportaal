@@ -34,26 +34,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DTI tudengite portaal</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="signup.css">
+        <title>DTI tudengite portaal - loo kasutaja</title>
+    </head>
 
-<body>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-        <input type="text" placeholder="Eesnimi" name="fname" id="fname" required="" />
-        <br>
-        <input type="text" placeholder="Perekonnanimi" name="lname" id="lname" required="" />
-        <br>
-        <input type="text" placeholder="Email" name="email" id="email" required="" />
-        <br>
-        <input type="password" placeholder="Parool" name="password" id="password" required="" />
-        <br>
-        <input type="submit" name="signup" id="signup" value="Registreeru" />
-    </form>
+    <body>
+        <div class="wrapper">
+            <div class="signup_container">
+                <div class="signup-header">
+                    <span>Tallinna Ülikooli Digitehnoloogiate Instituudi tudengiportaal<span>
+                </div>
 
-    <a href="login.php">Kas sul on konto juba olemas? Logi sisse</a>
-</body>
+                <p>Loo kasutaja<p>
+                <br>
 
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+
+                    <div class="input_box">
+                        <input type="text" placeholder="Eesnimi" name="fname" id="fname" class="input-field" required="" />
+                    </div>
+
+                    <br>
+
+                    <div class="input_box">
+                        <input type="text" placeholder="Perekonnanimi" name="lname" id="lname" class="input-field" required="" />
+                    </div>
+
+                    <br>
+
+                    <div class="input_box">
+                        <input type="text" placeholder="E-post" name="email" id="email" class="input-field" required="" />
+                    </div>
+
+                    <br>
+
+                    <div class="signup_box">
+                        <input type="password" placeholder="Parool" name="password" id="password" class="input-field" required="" />
+                    </div>
+
+                    <br>
+
+                    <input type="submit" name="signup" id="signup" class="input-submit" value="Loo konto" />
+                </form>
+
+                <a href="login.php">Konto juba olemas? Vajuta siia, et sisse logida!</a>
+                
+            </div>
+        </div>
+    </body>
 </html>
