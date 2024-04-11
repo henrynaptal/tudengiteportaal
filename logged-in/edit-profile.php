@@ -35,6 +35,7 @@
                         <h1>Muuda andmeid</h1>
                     </div>
 
+                    
                     <form action="" method="POST">
                         <div class="input_box">
                             <input type="text" placeholder="Eesnimi" name="fname" id="fname" class="input-field" required=""/>
