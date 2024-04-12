@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($user) {
         session_start();
         $_SESSION['kasutaja'] = $user;
-        header('Location: logged-in/profile.php');
+        header('Location: logged-in/home.php');
         exit;
     } else {
         $error_message = "Vale kasutajanimi või parool!";
@@ -72,7 +72,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <p><?php if(isset($error_message)) echo $error_message; ?></p>
 
-                <a href="signup.php">Ei ole kontot? Vajuta siia!</a>
+                <div class="go_signup">
+                    <a href="signup.php">Ei ole kontot? Vajuta siia!</a>
+                </div>
+                
             </div>
         </div>
     </body>

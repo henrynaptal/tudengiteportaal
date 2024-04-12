@@ -5,17 +5,36 @@ html, body {
 
 .header {
     margin-top: 2rem;
-    padding-left: 5rem;
-    padding-right: 5rem;
-    align-items: flex-end; /*et nav osa oleks divi all osas, mitte yleval*/
+
+}
+
+.navbar {
+    display: flex;
+    width: 100%;
+}
+
+.logo {
+    width: 30vh;
+}
+
+.username {
+    text-align: right;
+    width: 15%;
+    padding-right: 5vh;    
+}
+
+a {
+    color: #1e2020;
+    margin-bottom: 2vh;
 }
 
 ul {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding-left: 3vh;
+    padding-right: 3vh;
     overflow: hidden;
-    background-color: white; 
+    width: 85%;
 }
 
 li {
@@ -48,7 +67,9 @@ li a:hover {
     width:100%;
     height: 100%;
     display:flex;
-    overflow: hidden;
+    border-top: 2px solid #6bcaba;
+    column-gap: 4%;
+    max-height: 100vh;
 }
 
 aside {
@@ -61,25 +82,27 @@ img {
     height:auto;
 }
 
-.logo {
-    width:8%
-}
-
-.dp {
-    font-size: 0;
-}
-
-.welcome {
+.schedule_container {
     position: relative;
-    font-size: 100%;
-    color: #3c4445;
-    margin-top: 2rem;
-    padding: 5rem;
+    opacity: 65%;
+    min-height: 20vh;
 }
 
 
-/**.user-pic {
-    width: 8%;
-    border-radius: 50%;
-    cursor: pointer;
-}**/
+.schedule_header {
+    font-size: 13px;
+    color: #1e2020;
+    margin-bottom: 2rem;
+}
+
+.schedule_box {
+    width: 100%;
+    color:#FFFFFF;
+    font-size: 20px;
+}
+
+.weekday {
+    border: 1px solid white;
+    background: #D7CECE;
+    height: 8vh;
+}

@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="edit-profile.css">
-    <title>DTI tudengite portaal</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="edit_profile.css">
+        <title>Andmete muutmine</title>
+    </head>
+
     <body>
         <div class="container">
 
             <div class="header">
                 <nav class="navbar">
                     <ul>
-                        <div class="logo">
-                            <a href="/dt" title="Avaleht" rel="home" class="site-logo">
-                                <img src="https://www.tlu.ee/sites/default/files/2018-05/DTI-est_2.svg" alt="Tallinna Ülikool">
-                            </a>
-                        </div>
-
-                        <li><a href="#uudised">Uudised</a></li>
-                        <li><a href="#tunniplaan">Tunniplaan</a></li>
-                        <li><a href="#portfoolio">Minu portfoolio</a></li>
+                        <a href="home.php"><img src="https://www.tlu.ee/sites/default/files/2018-05/DTI-est_2.svg" class ="logo" alt="Tallinna Ülikool"></a>
+                        <li><a href="news.php">Uudised</a></li>
+                        <li><a href="schedule.php">Tunniplaan</a></li>
+                        <li><a href="portfolio.php">Minu portfoolio</a></li>
                     </ul>
+
+                    <div class="username">
+                        <p>Heli Kopter</p>
+                        <a href="edit_profile.php">Muudan andmeid</a>
+                    </div>
                 </nav>
 
             </div>
@@ -50,7 +51,7 @@
                         <br>
 
                         <div class="input_box">
-                            <input type="text" placeholder="Email" name="email" id="email" class="input-field" required=""/>
+                            <input type="text" placeholder="E-post" name="email" id="email" class="input-field" required=""/>
                         </div>
 
                         <br>
@@ -62,10 +63,10 @@
                         <br>
 
                         <div class="edit_box">
-                            <input type="submit" name="signup" id="signup" class="input-submit" value="Värskenda andmed"/>
+                            <input type="submit" name="edit" id="edit" class="input-submit" value="Värskendan"/>
                         </div>
 
-                        <a href="profile.php">Tagasi</a>
+                        <p><a href="javascript:history.go(-1)" title="Return to previous page">Tagasi</a></p>
 
                     </form>
                 </div>

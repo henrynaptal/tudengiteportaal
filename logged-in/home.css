@@ -1,0 +1,105 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+.header {
+    margin-top: 2rem;
+
+}
+
+.navbar {
+    display: flex;
+    width: 100%;
+}
+
+.logo {
+    width: 30vh;
+}
+
+.username {
+    text-align: right;
+    width: 15%;
+    padding-right: 5vh;    
+}
+
+a {
+    color: #1e2020;
+    margin-bottom: 2vh;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 3vh;
+    padding-right: 3vh;
+    overflow: hidden;
+    width: 85%;
+}
+
+/** separators between navbar items, a ei tööta korralikult
+nav li+li::after{
+    content:"/";
+    padding: 0;
+}**/
+
+li {
+    float: right;
+}
+
+li a {
+    display: block;
+    color: #3c4445;
+    font-style: italic;
+    font-family: "Times New Roman", serif;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 2rem 2rem;
+    text-decoration: none;
+    z-index: 2;
+}
+
+li a:hover {
+    color: #6bcaba;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.wrapper{
+    width:100%;
+    height: 100%;
+    display:flex;
+    column-gap: 4%;
+}
+
+aside {
+    flex: 0 0 200px;
+    background: #6bcaba;
+}
+
+img {
+    width:100%;
+    height:auto;
+}
+
+.dp {
+    font-size: 0;
+}
+
+.welcome {
+    position: relative;
+    font-size: 13px;
+    color: #3c4445;
+    margin-top: 1rem;
+}
+
+
+/**.user-pic {
+    width: 8%;
+    border-radius: 50%;
+    cursor: pointer;
+}**/

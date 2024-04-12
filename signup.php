@@ -71,16 +71,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <br>
 
-                    <div class="signup_box">
+                    <div class="input_box">
                         <input type="password" placeholder="Parool" name="password" id="password" class="input-field" required="" />
                     </div>
 
                     <br>
 
-                    <input type="submit" name="signup" id="signup" class="input-submit" value="Loo konto" />
+                    <div class="signup_box">
+                        <input type="submit" name="signup" id="signup" class="input-submit" value="Loo konto" />
+                    </div>
+                    
                 </form>
 
-                <a href="login.php">Konto juba olemas? Vajuta siia, et sisse logida!</a>
+                <div class="go_login">
+                    <a href="login.php">Konto juba olemas? Vajuta siia, et sisse logida!</a>
+                </div>
                 
             </div>
         </div>

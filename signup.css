@@ -24,9 +24,11 @@ body {
     border-top-left-radius: 3%;
     background-color: #FFFFFF;
     opacity: 65%;
-    padding: 10%;
-    min-height: 70vh;
-    margin-top: 10%;
+    padding: 5vh;
+    width: 90vh;
+    min-height: 90vh;
+    min-width: 50vh;
+    margin-top: 3%;
 }
 
 .signup-header{
@@ -34,6 +36,7 @@ body {
     color: #1e2020;
     margin-top: 10px;
     margin-bottom: 15%;
+    text-align: center;
 }
 
 .input_box{
@@ -43,7 +46,8 @@ body {
 }
 
 .signup_box{
-    text-align: center
+    text-align: center;
+    margin-top: 0;
 }
 
 .input-field{
@@ -66,8 +70,6 @@ body {
     margin: 7px;
     cursor: pointer;
     transition: .3s;
-
-
 }
 
 .input-submit:hover{
@@ -79,3 +81,12 @@ img {
     width:100%;
     height:auto;
 } 
+
+.go_login {
+    text-align: center;
+    padding: 2vh;
+}
+
+a {
+    color: #1e2020;
+}
