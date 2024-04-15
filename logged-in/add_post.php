@@ -9,14 +9,17 @@ $myDatabase = $databaseConnection->DTI_Database;
 $postCollection = $myDatabase->posts;
 
 session_start();
+if (!isset($_SESSION['kasutaja'])) {
+    header('Location: ../login.php');
+    exit;
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['kasutaja'])) {
-    $kasutaja_id = $_SESSION['kasutaja']['_id'];
+    $kasutaja = $_SESSION['kasutaja']; // Saame kogu kasutaja andmed sessioonist
     $sisu = $_POST['sisu'];
 
     $postCollection->insertOne([
         'kasutaja' => $kasutaja,
-        'kasutaja_id' => $kasutaja_id,
         'sisu' => $sisu,
         'likes' => 0, 
         'timestamp' => new MongoDB\BSON\UTCDateTime()

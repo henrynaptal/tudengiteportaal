@@ -3,9 +3,7 @@
 session_start();
 require_once __DIR__ . '/../vendor/autoload.php';
 
-// Kontrollitakse, kas kasutaja on sisse logitud
 if (!isset($_SESSION['kasutaja'])) {
-    // Kui kasutaja pole sisse logitud, suunatakse ta tagasi login lehele
     header('Location: ../login.php');
     exit;
 }
@@ -17,14 +15,14 @@ $databaseConnection = new MongoDB\Client(
 $myDatabase = $databaseConnection->DTI_Database;
 $postCollection = $myDatabase->posts;
 
-$posts = $postCollection->find([], ['sort' => ['timestamp' => -1]]); // Sorteerime postitused ajatempli järgi vastupidises järjekorras
+$posts = $postCollection->find([], ['sort' => ['timestamp' => -1]]);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['like'])) {
         $post_id = $_POST['post_id'];
         $postCollection->updateOne(
             ['_id' => new MongoDB\BSON\ObjectID($post_id)],
-            ['$inc' => ['likes' => 1]] // Suurendame "likes" väärtust 1 võrra
+            ['$inc' => ['likes' => 1]]
         );
     }
 }
@@ -43,12 +41,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="post">
             <p><?php echo $post['sisu']; ?></p>
             <p>Autor: <?php echo $post['kasutaja']['eesnimi'] . ' ' . $post['kasutaja']['perekonnanimi']; ?></p>
-            <form action="like.php" method="POST">
+            <a href="post.php?id=<?php echo $post['_id']; ?>"><button type="button">Vaata rohkem</button></a>
+            <form>
                 <input type="hidden" name="post_id" value="<?php echo $post['_id']; ?>">
-                <button type="submit" name="like">Like</button>
+                <button type="button" onclick="likePost('<?php echo $post['_id']; ?>')">Like</button> 
             </form>
-            <p><?php echo $post['likes']; ?> Likes</p>
+            <p id="likes_<?php echo $post['_id']; ?>"><?php echo $post['likes']; ?> Likes</p> 
         </div>
     <?php endforeach; ?>
+
+    <script>
+        function likePost(postId) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var likesElement = document.getElementById('likes_' + postId);
+                    likesElement.innerHTML = xhr.responseText + ' Likes';
+                }
+            };
+            xhr.open("POST", "like.php", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send("post_id=" + postId);
+        }
+        
+        document.querySelectorAll('.like-btn').forEach(button => {
+            button.addEventListener('click', async function() {
+                const postId = this.getAttribute('data-post-id');
+                const response = await fetch('like.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ postId }),
+                });
+                if (response.ok) {
+                    button.classList.add('disabled');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
