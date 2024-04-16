@@ -4,6 +4,26 @@ if (!isset($_SESSION['kasutaja'])) {
     header('Location: ../login.php');
     exit;
 }
+//echo $_SESSION['kasutaja']['eesnimi'];
+
+require_once __DIR__ . '/../vendor/autoload.php';
+$databaseConnection = new MongoDB\Client('mongodb+srv://Tenso:Dti2023@cluster0.v10lvza.mongodb.net/?tls=true&tlsCAFile=C%3A%5Cxampp%5Capache%5Cbin%5Ccurl-ca-bundle.crt');
+$myDatabase = $databaseConnection->DTI_Database;
+$userCollection = $myDatabase->users;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $parool = sha1($_POST['password']);
+
+    $userCollection->updateOne(
+        ['_id' => $_POST['kasutaja']['_id']],
+        ['$set' => ['email' => $email, 'parool' => $parool]]
+    );
+
+    header('Location: home.php');
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -47,13 +67,13 @@ if (!isset($_SESSION['kasutaja'])) {
                     
                     <form action="" method="POST">
                         <div class="input_box">
-                            <input type="text" placeholder="Eesnimi" name="fname" id="fname" class="input-field" required=""/>
+                            <input type="text" placeholder="Eesnimi" name="fname" id="fname" class="input-field" disabled />
                         </div>
 
                         <br>
 
                         <div class="input_box">
-                            <input type="text" placeholder="Perekonnanimi" name="lname" id="lname" class="input-field" required=""/>
+                            <input type="text" placeholder="Perekonnanimi" name="lname" id="lname" class="input-field" disabled/>
                         </div>
 
                         <br>
@@ -65,7 +85,7 @@ if (!isset($_SESSION['kasutaja'])) {
                         <br>
 
                         <div class="input_box">
-                            <input type="text" placeholder="Parool" name="password" id="password" class="input-field" required=""/>
+                            <input type="password" placeholder="Parool" name="password" id="password" class="input-field" required=""/>
                         </div>
 
                         <br>
@@ -80,6 +100,5 @@ if (!isset($_SESSION['kasutaja'])) {
                 </div>
             </div>
         </div>
-
     </body>
 </html>
