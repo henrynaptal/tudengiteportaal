@@ -15,7 +15,7 @@ if (!isset($_SESSION['kasutaja'])) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['kasutaja'])) {
-    $kasutaja = $_SESSION['kasutaja']; // Saame kogu kasutaja andmed sessioonist
+    $kasutaja = $_SESSION['kasutaja'];
     $sisu = $_POST['sisu'];
 
     $postCollection->insertOne([

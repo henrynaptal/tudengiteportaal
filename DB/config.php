@@ -17,3 +17,7 @@ $myDatabase = $databaseConnection->DTI_Database;
 $userCollection = $myDatabase->users;
 
 $postitusteKollektsioon = $myDatabase->postitused;
+
+$adminKollektsioon = $myDatabase->admins;
+
+$uudisteKollektsioon = $myDatabase->news;
