@@ -7,6 +7,10 @@ if (!isset($_SESSION['admin'])) {
     exit;
 }
 
+$databaseConnection = new MongoDB\Client(
+    'mongodb+srv://Tenso:Dti2023@cluster0.v10lvza.mongodb.net/?tls=true&tlsCAFile=C%3A%5Cxampp%5Capache%5Cbin%5Ccurl-ca-bundle.crt'
+);
+
 $myDatabase = $databaseConnection->DTI_Database;
 $uudisteKollektsioon = $myDatabase->news;
 
@@ -22,11 +26,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'timestamp' => new MongoDB\BSON\UTCDateTime()
     ]);
 
-    if ($result->getInsertedCount() === 1) {
+    /*if ($result->getInsertedCount() === 1) {
         echo "Uus postitus on edukalt loodud.";
     } else {
         echo "Midagi läks valesti, postituse loomine ebaõnnestus.";
-    }
+    }*/
+
+    //var_dump($uudisteKollektsioon);
 }
 ?>
 
@@ -44,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="title">Pealkiri:</label>
             <input type="text" id="title" name="title" required>
         </div>
+        <br>
         <div>
             <label for="content">Sisu:</label>
             <textarea id="content" name="content" required></textarea>

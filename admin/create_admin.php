@@ -8,14 +8,16 @@ $databaseConnection = new MongoDB\Client(
 );
 
 $myDatabase = $databaseConnection->DTI_Database;
-
 $adminKollektsioon = $myDatabase->admins;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = sha1($_POST['password']);
 
-    $admin = $adminKollektsioon->findOne(['email' => $email, 'password' => $password]);
+    $admin = $adminKollektsioon->insertOne([
+        'email' => $email, 
+        'password' => $password
+    ]);
 
     if ($admin) {
         $_SESSION['admin'] = true;
@@ -25,6 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Vale e-posti aadress või parool. Palun proovi uuesti.";
     }
 }
+
+var_dump($admin);
 ?>
 
 <!DOCTYPE html>
