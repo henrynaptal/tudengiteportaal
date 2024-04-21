@@ -34,6 +34,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //var_dump($uudisteKollektsioon);
 }
+
+$tunniplaaniKollektsioon = $myDatabase->tunniplaan;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $aine = $_POST['aine'];
+    $oppejoud = $_POST['oppejoud'];
+    $algusaeg = $_POST['algusaeg'];
+    $loppaeg = $_POST['loppaeg'];
+    $nadalapaev = $_POST['nadalapaev'];
+
+    $tunniplaaniKollektsioon->insertOne([
+        'aine' => $aine,
+        'oppejoud' => $oppejoud,
+        'algusaeg' => $algusaeg,
+        'loppaeg' => $loppaeg,
+        'nadalapaev' => $nadalapaev
+    ]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -41,10 +59,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loo uus postitus</title>
+    <title>Admin</title>
 </head>
 <body>
-    <h1>Loo uus postitus</h1>
+    <h1>Uudis:</h1>
     <form action="" method="POST">
         <div>
             <label for="title">Pealkiri:</label>
@@ -56,6 +74,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <textarea id="content" name="content" required></textarea>
         </div>
         <button type="submit">Loo postitus</button>
+    </form>
+    <br>
+    <h1>Tunniplaan:</h1>
+    <form action="" method="POST">
+        <div>
+            <label for="aine">Aine:</label>
+            <input type="text" id="aine" name="aine" required>
+        </div>
+        <br>
+        <div>
+            <label for="oppejoud">Õppejõud:</label>
+            <input type="text" id="oppejoud" name="oppejoud" required>
+        </div>
+        <br>
+        <div>
+            <label for="algusaeg">Algusaeg:</label>
+            <input type="text" id="algusaeg" name="algusaeg" required>
+        </div>
+        <br>
+        <div>
+            <label for="loppaeg">Lõppaeg:</label>
+            <input type="text" id="loppaeg" name="loppaeg" required>
+        </div>
+        <br>
+        <div>
+            <label for="nadalapaev">Nädalapäev:</label>
+            <input type="text" id="nadalapaev" name="nadalapaev" required>
+        </div>
+        <br>
+        <button type="submit">Loo tunniplaan</button>
     </form>
 </body>
 </html>
