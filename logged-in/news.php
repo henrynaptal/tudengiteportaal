@@ -4,6 +4,18 @@ if (!isset($_SESSION['kasutaja'])) {
     header('Location: ../login.php');
     exit;
 }
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$databaseConnection = new MongoDB\Client(
+    'mongodb+srv://Tenso:Dti2023@cluster0.v10lvza.mongodb.net/?tls=true&tlsCAFile=C%3A%5Cxampp%5Capache%5Cbin%5Ccurl-ca-bundle.crt'
+);
+
+$myDatabase = $databaseConnection->DTI_Database;
+$uudisteKollektsioon = $myDatabase->news;
+
+$uudised = $uudisteKollektsioon->find([], ['sort' => ['timestamp' => -1]]);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,6 +53,15 @@ if (!isset($_SESSION['kasutaja'])) {
                     <div class="news_header">
                         <h1>Uudised</h1>
                     </div>
+
+                    <?php foreach ($uudised as $uudis): ?>
+                        <div class="news">
+                            <h2><?php echo $uudis['title']; ?></h2>
+                            <p><?php echo $uudis['content']; ?></p>
+                            <p>Autor: <?php echo $uudis['author']; ?></p>
+                            <p>Kuupäev: <?php echo date('d.m.Y H:i', $uudis['timestamp']->toDateTime()->getTimestamp()); ?></p>
+                        </div>
+                    <?php endforeach; ?>
 
                     
 
