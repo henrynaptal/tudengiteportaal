@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['kasutaja'])) {
         'timestamp' => new MongoDB\BSON\UTCDateTime()
     ]);
 
-    header('Location: home.php');
+    header('Location: portfolio.php');
     exit;
 }
 ?>
@@ -38,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['kasutaja'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/d90f70bb05.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="add_post.css">
         <title>Postituse loomine</title>
     </head>
@@ -57,9 +58,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['kasutaja'])) {
 
                     <div class="username">
                         <p><?php echo $kasutaja->offsetGet('eesnimi') . " " . $kasutaja->offsetGet('perekonnanimi');?> </p>
-                        <a href="edit_profile.php">Muudan andmeid</a>
-                        <br>
-                        <a href="logout.php">Logi välja</a>
+                        <div class="icons">
+                            <div class="data">
+                                <a href="edit_profile.php"><i class="fa-solid fa-gear" style="color: #6bcaba;"></i></a>
+                            </div>
+
+                            <div class="out">
+                                <a href="logout.php"><i class="fa-solid fa-right-from-bracket" style="color: #6bcaba;"></i></a>
+                            </div>
+                        </div>
+                        
                     </div>
                 </nav>
             </div>
@@ -80,11 +88,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['kasutaja'])) {
 
                         <br>
 
-                        <div class="post_box">
-                            <input type="submit" name="upload" id="upload" class="input-submit" value="Postitan"/>
-                        </div>
+                        <div class="buttons">
+                            <div class="back_box">
+                                <input type="submit" name="go_back" id="go_back" class="back-submit" href="javascript:history.go(-1)" value="Katkestan"/>
+                            </div>
 
-                        <p><a href="javascript:history.go(-1)" title="Return to previous page">Tagasi</a></p>
+                            <div class="post_box">
+                                <input type="submit" name="upload" id="upload" class="input-submit" value="Postitan"/>
+                            </div>
+                        </div>
 
                     </form>
                 </div>

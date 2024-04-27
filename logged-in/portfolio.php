@@ -35,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d90f70bb05.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="portfolio.css">
     <title>Minu portfoolio</title>
 </head>
@@ -53,14 +54,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="username">
                         <p><?php echo $kasutaja->offsetGet('eesnimi') . " " . $kasutaja->offsetGet('perekonnanimi');?></p>
-                        <a href="edit_profile.php">Muudan andmeid</a>
-                        <br>
-                        <a href="logout.php">Logi välja</a>
+                        <div class="icons">
+                            <div class="data">
+                                <a href="edit_profile.php"><i class="fa-solid fa-gear" style="color: #6bcaba;"></i></a>
+                            </div>
+
+                            <div class="out">
+                                <a href="logout.php"><i class="fa-solid fa-right-from-bracket" style="color: #6bcaba;"></i></a>
+                            </div>
+                        </div>
+                        
                     </div>
                 </nav>
-
             </div>
-
 
             <div class="wrapper">
                 <aside class="sidebar"></aside>
@@ -68,22 +74,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="portfolio_container">
                     <div class="portfolio_header">
                         <h1>Portfoolio</h1>
+                        <div class="add">
+                            <a href="add_post.php"><i class="fa-solid fa-plus" style="color: #6bcaba;"></i></a>
+                        </div>
                     </div>
-                    <a href="add_post.php">Lisan uue projekti</a>
+
+                    <?php foreach ($posts as $post): ?>
+                        <div class="post">
+                            <p><?php echo $post['sisu']; ?></p>
+                            <p>Autor: <?php echo $post['kasutaja']['eesnimi'] . ' ' . $post['kasutaja']['perekonnanimi']; ?></p>
+                            <a href="post.php?id=<?php echo $post['_id']; ?>"><button type="button">Ava projekt</button></a>
+                                <form>
+                                    <input type="hidden" name="post_id" value="<?php echo $post['_id']; ?>">
+                                </form>
+                            <p id="likes_<?php echo $post['_id']; ?>"><?php echo $post['likes']; ?><i class="fa-solid fa-heart" style="color: #6bcaba;"></i></p> 
+                        </div>
+                    <?php endforeach; ?>
+
                 </div>
-                <?php foreach ($posts as $post): ?>
-                    <div class="post">
-                    <p><?php echo $post['sisu']; ?></p>
-                    <p>Autor: <?php echo $post['kasutaja']['eesnimi'] . ' ' . $post['kasutaja']['perekonnanimi']; ?></p>
-                    <a href="post.php?id=<?php echo $post['_id']; ?>"><button type="button">Vaata rohkem</button></a>
-                        <form>
-                            <input type="hidden" name="post_id" value="<?php echo $post['_id']; ?>">
-                        </form>
-                    <p id="likes_<?php echo $post['_id']; ?>"><?php echo $post['likes']; ?> Likes</p> 
-                    </div>
-                <?php endforeach; ?>
             </div>  
         </div>
-
     </body>
 </html>

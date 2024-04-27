@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/d90f70bb05.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="edit_profile.css">
         <title>Andmete muutmine</title>
     </head>
@@ -51,9 +52,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="username">
                         <p><?php echo $kasutaja->offsetGet('eesnimi') . " " . $kasutaja->offsetGet('perekonnanimi');?></p>
-                        <a href="edit_profile.php">Muudan andmeid</a>
-                        <br>
-                        <a href="logout.php">Logi välja</a>
+                        <div class="icons">
+                            <div class="data">
+                                <a href="edit_profile.php"><i class="fa-solid fa-gear" style="color: #6bcaba;"></i></a>
+                            </div>
+
+                            <div class="out">
+                                <a href="logout.php"><i class="fa-solid fa-right-from-bracket" style="color: #6bcaba;"></i></a>
+                            </div>
+                        </div>
+                        
                     </div>
                 </nav>
 
@@ -94,11 +102,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                         <br>
 
-                        <div class="edit_box">
-                            <input type="submit" name="edit" id="edit" class="input-submit" value="Värskendan"/>
-                        </div>
+                        <div class="buttons">
+                            <div class="back_box">
+                                <input type="submit" name="go_back" id="go_back" class="back-submit" href="javascript:history.go(-1)" value="Katkestan"/>
+                            </div>
 
-                        <p><a href="javascript:history.go(-1)" title="Return to previous page">Tagasi</a></p>
+                            <div class="edit_box">
+                                <input type="submit" name="edit" id="edit" class="input-submit" value="Värskendan"/>
+                            </div>
+                        </div>
 
                     </form>
                 </div>

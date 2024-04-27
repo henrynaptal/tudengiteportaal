@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="wrapper">
             <div class="signup_container">
                 <div class="signup-header">
-                    <span>Tallinna Ülikooli Digitehnoloogiate Instituudi tudengiportaal<span>
+                    <span>Tallinna Ülikooli Digitehnoloogiate instituudi tudengiportaal<span>
                 </div>
 
                 <p>Loo kasutaja<p>

@@ -5,7 +5,7 @@ html, body {
 
 .header {
     margin-top: 2rem;
-
+    padding-bottom: 2vh;
 }
 
 .navbar {
@@ -15,6 +15,7 @@ html, body {
 
 .logo {
     width: 30vh;
+    margin-left: 20px;
 }
 
 .username {
@@ -25,7 +26,6 @@ html, body {
 
 a {
     color: #1e2020;
-    margin-bottom: 2vh;
 }
 
 ul {
@@ -37,18 +37,12 @@ ul {
     width: 85%;
 }
 
-/** separators between navbar items, a ei tööta korralikult
-nav li+li::after{
-    content:"/";
-    padding: 0;
-}**/
-
 li {
     float: right;
+    padding-top: 5vh;
 }
 
 li a {
-    display: block;
     color: #3c4445;
     font-style: italic;
     font-family: "Times New Roman", serif;
@@ -57,6 +51,12 @@ li a {
     padding: 2rem 2rem;
     text-decoration: none;
     z-index: 2;
+}
+
+li::after {
+    content: "/"; 
+    color: #6bcaba;
+    font-size: 4vh;
 }
 
 li a:hover {
@@ -74,6 +74,7 @@ li a:hover {
     height: 100%;
     display:flex;
     column-gap: 4%;
+    background-color: #FAFAFA;
 }
 
 aside {
@@ -83,8 +84,10 @@ aside {
 
 img {
     width:100%;
-    height:auto;
 }
+
+
+
 
 .dp {
     font-size: 0;
@@ -97,9 +100,16 @@ img {
     margin-top: 1rem;
 }
 
+.icons{
+    display: flex;
+    justify-content: right;
+    font-size: 1.1rem;
+}
 
-/**.user-pic {
-    width: 8%;
-    border-radius: 50%;
-    cursor: pointer;
-}**/
+.data{
+    margin: 0 0.5rem;
+}
+
+.out{
+    margin: 0 0.5rem;
+}

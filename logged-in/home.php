@@ -15,6 +15,7 @@ $kasutaja = $_SESSION['kasutaja'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d90f70bb05.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="home.css">
     <title>Pealeht</title>
 </head>
@@ -34,10 +35,17 @@ $kasutaja = $_SESSION['kasutaja'];
 
                     <div class="username">
                         <p><?php echo $kasutaja->offsetGet('eesnimi') . " " . $kasutaja->offsetGet('perekonnanimi');?></p>
-                        <a href="edit_profile.php">Muudan andmeid</a>
-                        <br>
-                        <a href="logout.php">Logi välja</a>
+                        <div class="icons">
+                            <div class="data">
+                                <a href="edit_profile.php"><i class="fa-solid fa-gear" style="color: #6bcaba;"></i></a>
+                            </div>
+
+                            <div class="out">
+                                <a href="logout.php"><i class="fa-solid fa-right-from-bracket" style="color: #6bcaba;"></i></a>
+                            </div>
+                        </div>
                     </div>
+
                 </nav>
             </div> 
 

@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="wrapper">
             <div class="login_container">
                 <div class="login-header">
-                    <span>Tallinna Ülikooli Digitehnoloogiate Instituudi tudengiportaal<span>
+                    <span>Tallinna Ülikooli Digitehnoloogiate instituudi tudengiportaal<span>
                 </div>
 
                 <p>Logi sisse<p>

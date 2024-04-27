@@ -59,6 +59,7 @@ li::after {
     font-size: 4vh;
 }
 
+
 li a:hover {
     color: #6bcaba;
 }
@@ -73,9 +74,9 @@ li a:hover {
     width:100%;
     display:flex;
     column-gap: 4%;
-    background-color: #FAFAFA;
     border-top: 2px solid #6bcaba;
-    max-height: 1000vh;
+    background-color: #FAFAFAFA;
+    max-height: 400vh;
 }
 
 aside {
@@ -87,51 +88,16 @@ img {
     width:100%;
 }
 
-
-
-.portfolio_container {
+.post_container {
     position: relative;
     opacity: 65%;
     min-height: 20vh;
-    width: 90vh;
 
 }
 
-.portfolio_header {
+.post_header {
     font-size: 13px;
     color: #1e2020;
-    margin-top: 4.6vh;
-    margin-bottom: 4.6vh;
-    display: flex;
-}
-
-.add{
-    font-size: 1.5rem;
-    margin: 1rem;
-}
-
-.post{
-    background-color: #FFFFFF;
-    border-radius: 10px;
-    padding: 0.5rem;
-    margin: 1rem;
-    border: 2px solid #ae9e9e;
-}
-
-.icons{
-    display: flex;
-    justify-content: right;
-    font-size: 1.1rem;
-}
-
-.data{
-    margin: 0 0.5rem;
-}
-
-.out{
-    margin: 0 0.5rem;
-}
-
-.fa-heart{
-    margin-left: 0.3rem;
+    margin-top: 10%;
+    margin-bottom: 15%;
 }

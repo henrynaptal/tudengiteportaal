@@ -59,6 +59,7 @@ li::after {
     font-size: 4vh;
 }
 
+
 li a:hover {
     color: #6bcaba;
 }
@@ -73,8 +74,8 @@ li a:hover {
     width:100%;
     display:flex;
     column-gap: 4%;
-    background-color: #FAFAFA;
     border-top: 2px solid #6bcaba;
+    background-color: #FAFAFAFA;
     max-height: 1000vh;
 }
 
@@ -89,7 +90,7 @@ img {
 
 
 
-.portfolio_container {
+.posts_container {
     position: relative;
     opacity: 65%;
     min-height: 20vh;
@@ -97,17 +98,11 @@ img {
 
 }
 
-.portfolio_header {
+.posts_header {
     font-size: 13px;
     color: #1e2020;
-    margin-top: 4.6vh;
-    margin-bottom: 4.6vh;
-    display: flex;
-}
-
-.add{
-    font-size: 1.5rem;
-    margin: 1rem;
+    margin-top: 6vh;
+    margin-bottom: 6vh;
 }
 
 .post{
