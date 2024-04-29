@@ -69,9 +69,13 @@ $uudised = $uudisteKollektsioon->find([], ['sort' => ['timestamp' => -1]]);
                     <?php foreach ($uudised as $uudis): ?>
                         <div class="news">
                             <h2><?php echo $uudis['title']; ?></h2>
+                            <p><?php echo date('d.m.Y H:i', $uudis['timestamp']->toDateTime()->getTimestamp()); ?></p>
                             <p><?php echo $uudis['content']; ?></p>
-                            <p>Autor: <?php echo $uudis['author']; ?></p>
-                            <p>Kuupäev: <?php echo date('d.m.Y H:i', $uudis['timestamp']->toDateTime()->getTimestamp()); ?></p>
+                            <div class="author">
+                                <p>Autor: <?php echo $uudis['author']; ?></p>
+                            </div>
+                            
+                            
                         </div>
                     <?php endforeach; ?>
 

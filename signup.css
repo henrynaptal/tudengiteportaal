@@ -70,11 +70,11 @@ body {
     margin: 7px;
     cursor: pointer;
     transition: .3s;
+    border: 1px solid #ae9e9e;
 }
 
 .input-submit:hover{
-    background: var(--second-color);
-     
+    background: #ace9de;
 }
 
 img {

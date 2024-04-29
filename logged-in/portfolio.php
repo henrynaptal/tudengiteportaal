@@ -81,13 +81,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <?php foreach ($posts as $post): ?>
                         <div class="post">
-                            <p><?php echo $post['sisu']; ?></p>
-                            <p>Autor: <?php echo $post['kasutaja']['eesnimi'] . ' ' . $post['kasutaja']['perekonnanimi']; ?></p>
-                            <a href="post.php?id=<?php echo $post['_id']; ?>"><button type="button">Ava projekt</button></a>
-                                <form>
-                                    <input type="hidden" name="post_id" value="<?php echo $post['_id']; ?>">
-                                </form>
-                            <p id="likes_<?php echo $post['_id']; ?>"><?php echo $post['likes']; ?><i class="fa-solid fa-heart" style="color: #6bcaba;"></i></p> 
+                            <div class="content">
+                                <p><?php echo $post['sisu']; ?></p>
+                            </div>
+
+                            <div class="author">
+                                <p>Autor: <?php echo $post['kasutaja']['eesnimi'] . ' ' . $post['kasutaja']['perekonnanimi']; ?></p>
+                            </div>
+
+                            <div class="like_container">
+                                <p id="likes_<?php echo $post['_id']; ?>"><?php echo $post['likes']; ?><i class="fa-solid fa-heart" style="color: #6bcaba;"></i></p> 
+                                <input type="hidden" name="post_id" value="<?php echo $post['_id']; ?>">
+                            </div>
+
+                            <a href="post.php?id=<?php echo $post['_id']; ?>"><button type="button" class ="open">Ava projekt</button></a>
                         </div>
                     <?php endforeach; ?>
 

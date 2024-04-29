@@ -100,8 +100,8 @@ img {
 .portfolio_header {
     font-size: 13px;
     color: #1e2020;
-    margin-top: 4.6vh;
-    margin-bottom: 4.6vh;
+    margin-top: 4vh;
+    margin-bottom: 3.5vh;
     display: flex;
 }
 
@@ -132,6 +132,31 @@ img {
     margin: 0 0.5rem;
 }
 
+.content{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 1rem;
+}
+
+.author{
+    text-align: right;
+    margin-bottom: 0;
+}
+
+.like_container{
+    display: flex;
+    justify-content: right;
+    margin: 0.3rem;
+}
+
+.open{
+    border: none;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    transition: .3s;
+    margin: 0.5rem;
+}
+
 .fa-heart{
-    margin-left: 0.3rem;
+    margin-left: 1rem;
 }

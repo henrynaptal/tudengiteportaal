@@ -78,14 +78,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <?php foreach ($posts as $post): ?>
                         <div class="post">
-                            <p><?php echo $post['sisu']; ?></p>
-                            <p>Autor: <?php echo $post['kasutaja']['eesnimi'] . ' ' . $post['kasutaja']['perekonnanimi']; ?></p>
-                            <a href="post.php?id=<?php echo $post['_id']; ?>"><button type="button">Vaata rohkem</button></a>
-                            <form>
+                            <div class="content">
+                                <p><?php echo $post['sisu']; ?></p>
+                            </div>
+
+                            <div class="author">
+                                <p>Autor: <?php echo $post['kasutaja']['eesnimi'] . ' ' . $post['kasutaja']['perekonnanimi']; ?></p>
+                            </div>
+
+                            <div class="like_container">
+                                <p id="likes_<?php echo $post['_id']; ?>"><?php echo $post['likes']; ?></p> 
                                 <input type="hidden" name="post_id" value="<?php echo $post['_id']; ?>">
-                                <button type="button" onclick="likePost('<?php echo $post['_id']; ?>')">Märgi meeldivaks</button> 
-                            </form>
-                            <p id="likes_<?php echo $post['_id']; ?>"><?php echo $post['likes']; ?><i class="fa-solid fa-heart" style="color: #6bcaba;"></i></p> 
+                                <button type="button" class="like_button" onclick="likePost('<?php echo $post['_id']; ?>')"><i class="fa-solid fa-heart" style="color: #6bcaba;"></i></button> 
+                            </div>
+
+                            <a href="post.php?id=<?php echo $post['_id']; ?>"><button type="button" class ="read">Loe edasi</button></a>
                         </div>
                     <?php endforeach; ?>
 
@@ -96,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             xhr.onreadystatechange = function() {
                                 if (xhr.readyState == 4 && xhr.status == 200) {
                                     var likesElement = document.getElementById('likes_' + postId);
-                                    likesElement.innerHTML = xhr.responseText + ' Likes';
+                                    likesElement.innerHTML = xhr.responseText;
                                 }
                             };
                             xhr.open("POST", "like.php", true);

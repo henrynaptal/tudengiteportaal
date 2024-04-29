@@ -127,3 +127,8 @@ img {
 .out{
     margin: 0 0.5rem;
 }
+
+.author{
+    text-align: right;
+    margin: 1rem;
+}
