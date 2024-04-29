@@ -1,10 +1,16 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
+session_start();
+if (!isset($_SESSION['kasutaja'])) {
+    header('Location: ../login.php');
+    exit;
+}
 
 $databaseConnection = new MongoDB\Client(
     'mongodb+srv://Tenso:Dti2023@cluster0.v10lvza.mongodb.net/?tls=true&tlsCAFile=C%3A%5Cxampp%5Capache%5Cbin%5Ccurl-ca-bundle.crt'
 );
 
+$kasutaja = $_SESSION['kasutaja'];
 $myDatabase = $databaseConnection->DTI_Database;
 $postCollection = $myDatabase->posts;
 

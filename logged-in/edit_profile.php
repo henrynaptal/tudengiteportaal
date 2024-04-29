@@ -79,13 +79,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     
                     <form action="" method="POST">
                         <div class="input_box">
-                            <input type="text" placeholder="Eesnimi" name="fname" id="fname" class="input-field" disabled />
+                            <input type="text" placeholder="<?php echo $kasutaja->offsetGet('eesnimi');?>" name="fname" id="fname" class="input-field" disabled />
                         </div>
 
                         <br>
 
                         <div class="input_box">
-                            <input type="text" placeholder="Perekonnanimi" name="lname" id="lname" class="input-field" disabled/>
+                            <input type="text" placeholder="<?php echo $kasutaja->offsetGet('perekonnanimi');?>" name="lname" id="lname" class="input-field" disabled/>
                         </div>
 
                         <br>
